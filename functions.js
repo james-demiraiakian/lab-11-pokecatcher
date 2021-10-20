@@ -1,4 +1,4 @@
-
+import pokemon from './pokemon.js';
 
 export function findByID(id, pokemon) {
     for (const poke of pokemon) {
@@ -21,7 +21,7 @@ export function pokeCap(id) {
     if (pokeSelect) {
         pokeSelect.captures++;
     } else {
-        const pokeNew = { pokemon: 'pokemon', id: id, encounters: 1, captures: 1 };
+        const pokeNew = { pokemon: pokemon.pokemon, id: id, encounters: 1, captures: 1 };
         pokesData.push(pokeNew);
     }
 }

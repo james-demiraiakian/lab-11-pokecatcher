@@ -1,14 +1,10 @@
 // IMPORT MODULES under test here:
 // import { example } from '../example.js';
-import { findByID, pokedexGet } from '../functions.js';
+import { findByID, pokeCap, pokedexGet } from '../functions.js';
 import pokemon from '../pokemon.js';
 
 
-const test = QUnit.test;
-
-const testArr = [
-    { id: '1', shown: '0', picked: '0' }
-];
+const { test, skip } = QUnit;
 
 test('findByID(id, pokemon)', (expect) => {
     //Arrange
@@ -57,9 +53,27 @@ test('findByID(id, pokemon)', (expect) => {
 });
 
 test('pokedexGet(id)', (expect) => {
-    const expected = [];
+    const pokeTest = [{ pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 }];
+    console.log(pokeTest);
+    const pokeTestStr = JSON.stringify(pokeTest);
+    console.log(pokeTestStr);
+    localStorage.setItem('POKEMON', pokeTestStr);
+    
+    const expected = [{ pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 }];
 
     const actual = pokedexGet();
+
+    expect.deepEqual(actual, expected);
+});
+
+test('pokeCap(id)', (expect) => {
+    const expected = [
+        { 
+            pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 
+        }
+    ];
+
+    const actual = pokeCap(1);
 
     expect.deepEqual(actual, expected);
 });
