@@ -8,13 +8,20 @@ export function findByID(id, pokemon) {
     }
 }
 
-export function pokeGet() {
+export function pokedexGet() {
     const pokeString = localStorage.getItem('POKEMON') || '[]';
     const pokeData = JSON.parse(pokeString);
     return pokeData;
 }
 
-// export function pokeSet(id) {
-//     const pokesData = pokeGet();
-//     const pokeData = findByID(id, );
-// }
+export function pokeCap(id) {
+    const pokesData = pokedexGet();
+    let pokeSelect = findByID(id, pokesData);
+
+    if (pokeSelect) {
+        pokeSelect.captures++;
+    } else {
+        const pokeNew = { pokemon: 'pokemon', id: id, encounters: 1, captures: 1 };
+        pokesData.push(pokeNew);
+    }
+}

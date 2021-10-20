@@ -1,6 +1,6 @@
 // IMPORT MODULES under test here:
 // import { example } from '../example.js';
-import { findByID } from '../functions.js';
+import { findByID, pokedexGet } from '../functions.js';
 import pokemon from '../pokemon.js';
 
 
@@ -53,5 +53,13 @@ test('findByID(id, pokemon)', (expect) => {
 
     //Expect
     // Make assertions about what is expected versus the actual result
+    expect.deepEqual(actual, expected);
+});
+
+test('pokedexGet(id)', (expect) => {
+    const expected = [];
+
+    const actual = pokedexGet();
+
     expect.deepEqual(actual, expected);
 });
