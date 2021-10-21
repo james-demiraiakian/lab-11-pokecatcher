@@ -1,7 +1,7 @@
 // import functions and grab DOM elements
 import pokemon from './pokemon.js';
-import { findByID, pokeCap, pokeEncounter, pokedexGet, pokedexSet } from './functions.js';
-const radios = document.getElementsByName('pokemon');
+import { pokeCap, pokeEncounter } from './functions.js';
+// const radios = document.getElementsByName('pokemon');
 const pokeRadio1 = document.getElementById('poke-one');
 const pokeRadio2 = document.getElementById('poke-two');
 const pokeRadio3 = document.getElementById('poke-three');

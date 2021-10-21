@@ -4,7 +4,7 @@ import { findByID, pokeCap, pokedexGet, pokedexSet, pokeEncounter } from '../fun
 import pokemon from '../pokemon.js';
 
 
-const { test, skip } = QUnit;
+const { test } = QUnit;
 
 test('findByID(id, pokemon)', (expect) => {
     //Arrange
