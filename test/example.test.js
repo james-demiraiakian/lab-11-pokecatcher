@@ -66,9 +66,18 @@ test('pokedexGet(id)', (expect) => {
 
 test('pokeCap(id)', (expect) => {
     localStorage.removeItem('POKEMON');
-    const expected = [
+    const testStorage = [
         { 
             pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 
+        }
+    ];
+
+    const testStorageString = JSON.stringify(testStorage);
+    localStorage.setItem('POKEMON', testStorageString);
+
+    const expected = [
+        { 
+            pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 2 
         }
     ];
 
@@ -99,7 +108,7 @@ test('pokeEncounter(id)', (expect) => {
     expect.deepEqual(expected, actual);
 });
 
-test('pokedexSet(pokeData)', (expect) => {
+test('pokedexSet(pokeData) - with data', (expect) => {
     localStorage.removeItem('POKEMON');
 
     const expected = [
@@ -107,6 +116,20 @@ test('pokedexSet(pokeData)', (expect) => {
             pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 0 
         }
     ];
+
+    pokedexSet(expected);
+
+    const lSString = localStorage.getItem('POKEMON');
+
+    const actual = JSON.parse(lSString);
+
+    expect.deepEqual(expected, actual);
+});
+
+test('pokedexSet(pokeData) - empty', (expect) => {
+    localStorage.removeItem('POKEMON');
+
+    const expected = [];
 
     pokedexSet(expected);
 

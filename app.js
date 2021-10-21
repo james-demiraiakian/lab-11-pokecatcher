@@ -49,7 +49,7 @@ select.addEventListener('click', () => {
     const pokeSelected = document.querySelector('input[type=radio]:checked');
 
     if (pokeSelected) {
-        const pokeID = pokeSelected.value;
+        const pokeID = Number(pokeSelected.value);
         plays++;
         pokeCap(pokeID);
         if (plays >= 10) {
