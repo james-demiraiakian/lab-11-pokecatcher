@@ -25,8 +25,9 @@ export function pokeCap(id) {
         const pokeNew = { pokemon: matchingPokemon.pokemon, id: id, encounters: 1, captures: 1 };
         pokeData.push(pokeNew);
     }
-    const pokeString = JSON.stringify(pokeData);
-    localStorage.setItem('POKEMON', pokeString);
+    // const pokeString = JSON.stringify(pokeData);
+    // localStorage.setItem('POKEMON', pokeString);
+    pokedexSet(pokeData);
 }
 
 export function pokeEncounter(id) {
@@ -40,6 +41,12 @@ export function pokeEncounter(id) {
         const newEncount = { pokemon: matchingPokemon.pokemon, id: id, encounters: 1, captures: 0 };
         pokeData.push(newEncount);
     }
+    // const pokeString = JSON.stringify(pokeData);
+    // localStorage.setItem('POKEMON', pokeString);
+    pokedexSet(pokeData);
+}
+
+export function pokedexSet(pokeData) {
     const pokeString = JSON.stringify(pokeData);
     localStorage.setItem('POKEMON', pokeString);
 }

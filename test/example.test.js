@@ -1,6 +1,6 @@
 // IMPORT MODULES under test here:
 // import { example } from '../example.js';
-import { findByID, pokeCap, pokedexGet, pokeEncounter } from '../functions.js';
+import { findByID, pokeCap, pokedexGet, pokedexSet, pokeEncounter } from '../functions.js';
 import pokemon from '../pokemon.js';
 
 
@@ -92,6 +92,24 @@ test('pokeEncounter(id)', (expect) => {
 
     pokeEncounter(1);
     
+    const lSString = localStorage.getItem('POKEMON');
+
+    const actual = JSON.parse(lSString);
+
+    expect.deepEqual(expected, actual);
+});
+
+test('pokedexSet(pokeData)', (expect) => {
+    localStorage.removeItem('POKEMON');
+
+    const expected = [
+        { 
+            pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 0 
+        }
+    ];
+
+    pokedexSet(expected);
+
     const lSString = localStorage.getItem('POKEMON');
 
     const actual = JSON.parse(lSString);
