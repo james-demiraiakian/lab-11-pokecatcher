@@ -103,3 +103,18 @@ TDD all functions | 2
 STRETCH: Use an array of arrays (that is, an array of session arrays) in local storage to track and display all-time encounters and captures (over multiple sessions) in addition to single session. Display these according to a design of your choice. | +1
 STRETCH: Display random pokemon images _with weird non-duplication rules (i.e., don't show the same pokemon image in two different consecutive questions)_ | +1
 STRETCH: As the user is playing, display captures and encounters for each pokemon below each pokemon image | +1
+
+
+
+for (let item of results) {
+    const fruit = findByID(fruits, item.id)
+
+    cost div = document.createElement('div');
+    cost img = document.createElement('img');
+    img.src = fruit.image
+    const header = document.creElement('h2');
+    const resultsSpan1 = document.createElement('span');
+    resultsSpan1.testContent = `Shown: ${item.shown}`;
+    const resultsSpan2 = document.createElement('span');
+    resultsSpan2.testContent = `Shown: ${item.shown}`;
+}

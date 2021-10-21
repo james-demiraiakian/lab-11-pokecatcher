@@ -12,6 +12,53 @@ const select = document.getElementById('poke-select');
 
 // initialize global state
 
+const pokeRender = () => {
+    let rand1 = Math.floor(Math.random() * pokemon.length);
+    let rand2 = Math.floor(Math.random() * pokemon.length);
+    let rand3 = Math.floor(Math.random() * pokemon.length);
+    
+    while (rand1 === rand2 || rand1 === rand3 || rand2 === rand3) {
+        rand1 = Math.floor(Math.random() * pokemon.length);
+        rand2 = Math.floor(Math.random() * pokemon.length);
+        rand3 = Math.floor(Math.random() * pokemon.length);
+    }
+  
+    const poke1 = pokemon[rand1];
+    const poke2 = pokemon[rand2];
+    const poke3 = pokemon[rand3];
+    pokeEncounter(poke1.id);
+    pokeEncounter(poke2.id);
+    pokeEncounter(poke3.id);
+    const pokeImg1 = poke1.url_image;
+    const pokeImg2 = poke2.url_image;
+    const pokeImg3 = poke3.url_image;
+    
+    pokeImage1.src = pokeImg1;
+    pokeRadio1.value = poke1.id;
+    pokeImage2.src = pokeImg2;
+    pokeRadio2.value = poke2.id;
+    pokeImage3.src = pokeImg3;
+    pokeRadio3.value = poke3.id;
+};
+
+pokeRender();
+
+let plays = 0;
+
+select.addEventListener('click', () => {
+    const pokeSelected = document.querySelector('input[type=radio]:checked');
+
+    if (pokeSelected) {
+        const pokeID = pokeSelected.value;
+        plays++;
+        pokeCap(pokeID);
+        if (plays >= 10) {
+            window.location = './results';
+        } else {
+            pokeRender();
+        }
+    }
+});
 // set event listeners 
   // get user input
   // use user input to update state 
