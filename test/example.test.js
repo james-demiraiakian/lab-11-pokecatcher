@@ -1,6 +1,6 @@
 // IMPORT MODULES under test here:
 // import { example } from '../example.js';
-import { findByID, pokeCap, pokedexGet } from '../functions.js';
+import { findByID, pokeCap, pokedexGet, pokeEncounter } from '../functions.js';
 import pokemon from '../pokemon.js';
 
 
@@ -54,9 +54,7 @@ test('findByID(id, pokemon)', (expect) => {
 
 test('pokedexGet(id)', (expect) => {
     const pokeTest = [{ pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 }];
-    console.log(pokeTest);
     const pokeTestStr = JSON.stringify(pokeTest);
-    console.log(pokeTestStr);
     localStorage.setItem('POKEMON', pokeTestStr);
     
     const expected = [{ pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 }];
@@ -67,13 +65,36 @@ test('pokedexGet(id)', (expect) => {
 });
 
 test('pokeCap(id)', (expect) => {
+    localStorage.removeItem('POKEMON');
     const expected = [
         { 
             pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 
         }
     ];
 
-    const actual = pokeCap(1);
+    pokeCap(1);
+
+    const lSString = localStorage.getItem('POKEMON');
+
+    const actual = JSON.parse(lSString);
 
     expect.deepEqual(actual, expected);
+});
+
+test('pokeEncounter(id)', (expect) => {
+    localStorage.removeItem('POKEMON');
+
+    const expected = [
+        { 
+            pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 0 
+        }
+    ];
+
+    pokeEncounter(1);
+    
+    const lSString = localStorage.getItem('POKEMON');
+
+    const actual = JSON.parse(lSString);
+
+    expect.deepEqual(expected, actual);
 });

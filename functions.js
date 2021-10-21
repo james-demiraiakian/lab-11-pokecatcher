@@ -15,13 +15,31 @@ export function pokedexGet() {
 }
 
 export function pokeCap(id) {
-    const pokesData = pokedexGet();
-    let pokeSelect = findByID(id, pokesData);
+    const pokeData = pokedexGet();
+    let pokeSelect = findByID(id, pokeData);
 
     if (pokeSelect) {
         pokeSelect.captures++;
     } else {
-        const pokeNew = { pokemon: pokemon.pokemon, id: id, encounters: 1, captures: 1 };
-        pokesData.push(pokeNew);
+        const matchingPokemon = findByID(id, pokemon);
+        const pokeNew = { pokemon: matchingPokemon.pokemon, id: id, encounters: 1, captures: 1 };
+        pokeData.push(pokeNew);
     }
+    const pokeString = JSON.stringify(pokeData);
+    localStorage.setItem('POKEMON', pokeString);
+}
+
+export function pokeEncounter(id) {
+    let pokeData = pokedexGet();
+    let pokeEncount = findByID(id, pokeData);
+
+    if (pokeEncount) {
+        pokeEncount.encounters++;
+    } else {
+        const matchingPokemon = findByID(id, pokemon);
+        const newEncount = { pokemon: matchingPokemon.pokemon, id: id, encounters: 1, captures: 0 };
+        pokeData.push(newEncount);
+    }
+    const pokeString = JSON.stringify(pokeData);
+    localStorage.setItem('POKEMON', pokeString);
 }
