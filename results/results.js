@@ -7,8 +7,7 @@ const main = document.getElementById('main');
 
 for (const entry of currentPokedex) {
     const poke = findByID(entry.id, pokemon);
-    const pokedx = findByID(entry.id, currentPokedex)
-    console.log(poke);
+    const pokedx = findByID(entry.id, currentPokedex);
 
     const container = document.createElement('div');
     container.classList.add('results-container');
