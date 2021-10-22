@@ -14,9 +14,11 @@ for (const entry of currentPokedex) {
 
     const img = document.createElement('img');
     img.src = poke.url_image;
+    img.classList.add('poke-img');
 
     const header = document.createElement('h3');
     header.textContent = poke.pokemon;
+    header.classList.add('poke-name');
 
     const div = document.createElement('div');
     div.classList.add('results-body');
