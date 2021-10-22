@@ -1,3 +1,43 @@
+import pokemon from '../pokemon.js';
+import { findByID, pokedexGet } from '../functions.js';
+
+const currentPokedex = pokedexGet();
+
+const main = document.getElementById('main');
+
+for (const entry of currentPokedex) {
+    const poke = findByID(entry.id, pokemon);
+    const pokedx = findByID(entry.id, currentPokedex)
+    console.log(poke);
+
+    const container = document.createElement('div');
+    container.classList.add('results-container');
+
+    const img = document.createElement('img');
+    img.src = poke.url_image;
+
+    const header = document.createElement('h3');
+    header.textContent = poke.pokemon;
+
+    const div = document.createElement('div');
+    div.classList.add('results-body');
+
+    const p = document.createElement('p');
+
+    const encounterSpan = document.createElement('span');
+    encounterSpan.textContent = `Encounters: ${pokedx.encounters}`;
+
+    const captureSpan = document.createElement('span');
+    captureSpan.textContent = `Captures: ${pokedx.captures}`;
+
+    p.append(encounterSpan, captureSpan);
+    p.classList.add('results-text');
+
+    div.append(img, p);
+    container.append(header, div);
+    main.append(container);
+}
+
 // var ctx = document.getElementById('results-chart').getContext('2d');
 // var myChart = new Chart(ctx, {
 //     type: 'bar',
