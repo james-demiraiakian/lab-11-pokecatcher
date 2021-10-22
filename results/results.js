@@ -4,6 +4,14 @@ import { findByID, pokedexGet } from '../functions.js';
 const currentPokedex = pokedexGet();
 
 const main = document.getElementById('main');
+const homeButton = document.getElementById('home');
+
+homeButton.addEventListener('click', () => {
+    const lifetime = localStorage.getItem('LIFETIME');
+    localStorage.removeItem('ITEMS');
+    localStorage.setItem('LIFETIME', lifetime);
+    window.location = '../';
+});
 
 for (const entry of currentPokedex) {
     const poke = findByID(entry.id, pokemon);
@@ -39,38 +47,91 @@ for (const entry of currentPokedex) {
     main.append(container);
 }
 
-// var ctx = document.getElementById('results-chart').getContext('2d');
-// var myChart = new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: [12, 19, 3, 5, 2, 3],
-//             backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 'rgba(54, 162, 235, 0.2)',
-//                 'rgba(255, 206, 86, 0.2)',
-//                 'rgba(75, 192, 192, 0.2)',
-//                 'rgba(153, 102, 255, 0.2)',
-//                 'rgba(255, 159, 64, 0.2)'
-//             ],
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 'rgba(54, 162, 235, 1)',
-//                 'rgba(255, 206, 86, 1)',
-//                 'rgba(75, 192, 192, 1)',
-//                 'rgba(153, 102, 255, 1)',
-//                 'rgba(255, 159, 64, 1)'
-//             ],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
+
+let pokeNames = currentPokedex.map(i => i.pokemon);
+let pokeEncount = currentPokedex.map(i => i.encounters);
+let pokeCaps = currentPokedex.map(i => i.captures);
+console.log('array', currentPokedex);
+console.log('names', pokeNames);
+
+var ctx = document.getElementById('results-chart').getContext('2d');
+// var Chart = require('chart.js');
+// eslint-disable-next-line no-undef, no-unused-vars
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: pokeNames,
+        datasets: [{
+            label: 'Pokemon Encounters',
+            data: pokeEncount,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)'
+            ],
+            
+            borderWidth: 1
+        },
+        {
+            label: 'Pokemon Captures',
+            data: pokeCaps,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+            ],
+            
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+const allPokeNames = pokemon.map(i => i.pokemon);
+// console.log('pokeIDS', pokeIDS);
+const pokeAtt = pokemon.map(i => i.attack);
+console.log('pokeAtt', pokeAtt);
+
+var radarChart = document.getElementById('radar-chart');
+// eslint-disable-next-line no-undef, no-unused-vars
+radarChart = new Chart(radarChart, {
+    type: 'radar',
+    data: {
+        labels: allPokeNames,
+        datasets: [{
+            label: 'Pokemon Attack Values',
+            data: pokeAtt,
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }]
+    },
+    options: {
+        scale: {
+            min: 0,
+            max: 100,
+            ticks: {
+                stepSize: 10
+            },
+            pointLabels: {
+                fontSize: 18
+            }
+        },
+        legend: {
+            position: 'left'
+        }
+    }
+});
+  
