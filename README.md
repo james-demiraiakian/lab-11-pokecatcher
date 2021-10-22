@@ -118,3 +118,39 @@ for (let item of results) {
     const resultsSpan2 = document.createElement('span');
     resultsSpan2.testContent = `Shown: ${item.shown}`;
 }
+
+lab outline
+
+1 - write plan
+
+(alot of written notes/code snippets)
+
+2 - functions
+
+write tests - functions side by side
+
+~~~findByID(id, item);
+~~~get pokedex()
+~~~set pokedex()
+~~~cap pokemon()
+~~~encounter pokemon()
+
+3 - page html
+
+4 - app.js functions
+
+- randomizer
+- no repeat section
+- pokemon render
+- event listener
+- make sure pokemon is selected
+
+5 - basic CSS 
+
+6 - results page
+
+- pass in localStorage data
+- munge data of both results and pokemon info
+- choose properties to chart.
+
+7 - more CSS
