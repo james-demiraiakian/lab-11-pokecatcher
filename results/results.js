@@ -1,5 +1,5 @@
 import pokemon from '../pokemon.js';
-import { findByID, pokedexGet } from '../functions.js';
+import { findByID, pokedexGet, storeLifetime } from '../functions.js';
 
 const currentPokedex = pokedexGet();
 
@@ -7,10 +7,14 @@ const main = document.getElementById('main');
 const homeButton = document.getElementById('home');
 
 homeButton.addEventListener('click', () => {
-    const lifetime = localStorage.getItem('LIFETIME');
-    localStorage.removeItem('ITEMS');
-    localStorage.setItem('LIFETIME', lifetime);
-    window.location = '../';
+    // const lifetime = localStorage.getItem('ITEMS');
+    // const lifetime = pokedexGet();
+    storeLifetime();
+    setTimeout(() => {
+        // storeLifetime();
+        // localStorage.removeItem('ITEMS');
+        // window.location = '../';
+    }, 100);
 });
 
 for (const entry of currentPokedex) {
@@ -51,11 +55,8 @@ for (const entry of currentPokedex) {
 let pokeNames = currentPokedex.map(i => i.pokemon);
 let pokeEncount = currentPokedex.map(i => i.encounters);
 let pokeCaps = currentPokedex.map(i => i.captures);
-console.log('array', currentPokedex);
-console.log('names', pokeNames);
 
 var ctx = document.getElementById('results-chart').getContext('2d');
-// var Chart = require('chart.js');
 // eslint-disable-next-line no-undef, no-unused-vars
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -98,7 +99,6 @@ var myChart = new Chart(ctx, {
 const allPokeNames = pokemon.map(i => i.pokemon);
 // console.log('pokeIDS', pokeIDS);
 const pokeAtt = pokemon.map(i => i.attack);
-console.log('pokeAtt', pokeAtt);
 
 var radarChart = document.getElementById('radar-chart');
 // eslint-disable-next-line no-undef, no-unused-vars
