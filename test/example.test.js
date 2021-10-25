@@ -55,7 +55,7 @@ test('findByID(id, pokemon)', (expect) => {
 test('pokedexGet(id)', (expect) => {
     const pokeTest = [{ pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 }];
     const pokeTestStr = JSON.stringify(pokeTest);
-    localStorage.setItem('POKEMON', pokeTestStr);
+    localStorage.setItem('ITEMS', pokeTestStr);
     
     const expected = [{ pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 }];
 
@@ -65,7 +65,7 @@ test('pokedexGet(id)', (expect) => {
 });
 
 test('pokeCap(id)', (expect) => {
-    localStorage.removeItem('POKEMON');
+    localStorage.removeItem('ITEMS');
     const testStorage = [
         { 
             pokemon: 'bulbasaur', id: 1, encounters: 1, captures: 1 
@@ -73,7 +73,7 @@ test('pokeCap(id)', (expect) => {
     ];
 
     const testStorageString = JSON.stringify(testStorage);
-    localStorage.setItem('POKEMON', testStorageString);
+    localStorage.setItem('ITEMS', testStorageString);
 
     const expected = [
         { 
@@ -83,7 +83,7 @@ test('pokeCap(id)', (expect) => {
 
     pokeCap(1);
 
-    const lSString = localStorage.getItem('POKEMON');
+    const lSString = localStorage.getItem('ITEMS');
 
     const actual = JSON.parse(lSString);
 
@@ -91,7 +91,7 @@ test('pokeCap(id)', (expect) => {
 });
 
 test('pokeEncounter(id)', (expect) => {
-    localStorage.removeItem('POKEMON');
+    localStorage.removeItem('ITEMS');
 
     const expected = [
         { 
@@ -101,7 +101,7 @@ test('pokeEncounter(id)', (expect) => {
 
     pokeEncounter(1);
     
-    const lSString = localStorage.getItem('POKEMON');
+    const lSString = localStorage.getItem('ITEMS');
 
     const actual = JSON.parse(lSString);
 
@@ -109,7 +109,7 @@ test('pokeEncounter(id)', (expect) => {
 });
 
 test('pokedexSet(pokeData) - with data', (expect) => {
-    localStorage.removeItem('POKEMON');
+    localStorage.removeItem('ITEMS');
 
     const expected = [
         { 
@@ -119,7 +119,7 @@ test('pokedexSet(pokeData) - with data', (expect) => {
 
     pokedexSet(expected);
 
-    const lSString = localStorage.getItem('POKEMON');
+    const lSString = localStorage.getItem('ITEMS');
 
     const actual = JSON.parse(lSString);
 
@@ -127,13 +127,13 @@ test('pokedexSet(pokeData) - with data', (expect) => {
 });
 
 test('pokedexSet(pokeData) - empty', (expect) => {
-    localStorage.removeItem('POKEMON');
+    localStorage.removeItem('ITEMS');
 
     const expected = [];
 
     pokedexSet(expected);
 
-    const lSString = localStorage.getItem('POKEMON');
+    const lSString = localStorage.getItem('ITEMS');
 
     const actual = JSON.parse(lSString);
 
