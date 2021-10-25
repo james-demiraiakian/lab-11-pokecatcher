@@ -64,13 +64,13 @@ export function storeLifetime() {
     let pokeLifeStr = localStorage.getItem('LIFETIME') || '[]';
     let pokeLife = JSON.parse(pokeLifeStr);
 
+
     if (pokeLife.length === 0) {
         pokeLife = [...pokeData];
         lifetimePokedexSet(pokeLife);
     } else {
-        let pokeLifeEncounters = Number(pokeLife.encounters) + Number(pokeData.encounters);
-        console.log(pokeLifeEncounters);
-        pokeLife.captures = pokeLife.captures + pokeData.captures;
+        pokeLife = [...pokeData, ...pokeLife];
+        
         lifetimePokedexSet(pokeLife);
     }
 }

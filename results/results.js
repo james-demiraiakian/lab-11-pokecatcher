@@ -7,13 +7,10 @@ const main = document.getElementById('main');
 const homeButton = document.getElementById('home');
 
 homeButton.addEventListener('click', () => {
-    // const lifetime = localStorage.getItem('ITEMS');
-    // const lifetime = pokedexGet();
     storeLifetime();
+    localStorage.removeItem('ITEMS');
     setTimeout(() => {
-        // storeLifetime();
-        // localStorage.removeItem('ITEMS');
-        // window.location = '../';
+        window.location = '../';
     }, 100);
 });
 
